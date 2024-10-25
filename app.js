@@ -49,7 +49,8 @@ async function loadTips() {
   snapshot.forEach((doc) => {
     const tipData = doc.data();
     const timestamp = firebase.firestore.Timestamp.fromDate(new Date());
-      const date = timestamp.toLocaleDateString("en", options);
+    const date0 = timestamp.toDate();
+      const date = date0.toLocaleDateString("en", options);
 console.log(date);
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
