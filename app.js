@@ -49,9 +49,9 @@ console.log(date);
     console.log(doc.data().url);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details><summary style='font-size: 9pt;color: cadetblue;'>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: cadetblue;'>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>";
   }else{
- tipElement.innerHTML = "<details><summary style='font-size: 9pt;color: cadetblue;'>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: cadetblue;'>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -68,21 +68,4 @@ function formatDate(date) {
     return formatDate.toLocaleTimeString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-// Fetch all the details element.
-const details = document.querySelectorAll("details");
 
-// Add the onclick listeners.
-details.forEach((detail) => {
-  detail.addEventListener("toggle", () => {
-    if (detail.open) setTargetDetail(detail);
-  });
-});
-
-// Close all the details that are not targetDetail.
-function setTargetDetail(targetDetail) {
-  details.forEach((detail) => {
-    if (detail !== targetDetail) {
-      detail.open = false;
-    }
-  });
-}
