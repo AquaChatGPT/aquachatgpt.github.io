@@ -49,9 +49,9 @@ console.log(date);
     console.log(doc.data().url);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details><summary>" + doc.data().name + ": " + doc.data().content.substr(0,15) + " ...</summary><p>" + doc.data().content + "</p><p style='font-size: 10px;color: grey;'>created: " + date + "</p>";
+ tipElement.innerHTML = "<details><summary>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>";
   }else{
- tipElement.innerHTML = "<details><summary>" + doc.data().name + ": " + doc.data().content.substr(0,15) + " ...</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;color: grey;'>created: " + date + "</p>";
+ tipElement.innerHTML = "<details><summary>" + doc.data().content.substr(0,30) + " ...</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "</p>;
   }
        tipsContainer.appendChild(tipElement);
   });
