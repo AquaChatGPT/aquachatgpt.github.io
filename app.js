@@ -52,7 +52,7 @@ async function loadTips() {
     const date0 = timestamp.toDate();
     //new Date(doc.data().date12).toLocaleDateString("en", options)
      //new Date(date0.toLocaleDateString("en", options)
-      const date = new Date(date0.toLocaleDateString("en", options)
+      const date = new Date(date0).toLocaleDateString("en", options);
 console.log(date);
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
