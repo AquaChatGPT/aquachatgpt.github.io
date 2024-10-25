@@ -41,14 +41,17 @@ async function loadTips() {
   const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
   snapshot.forEach((doc) => {
     const tipData = doc.data();
+    const timestamp = firebase.firestore.Timestamp.fromDate(new Date());
+   const date = timestamp.toDate();
+console.log(date);
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
     console.log(doc.data().url);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p>" + doc.data().timestamp + "</p>";
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p>" + date + "</p>";
   }else{
- tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p>" + doc.data().timestamp + "</p>";
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p>" + date + "</p>";
   }
        tipsContainer.appendChild(tipElement);
   });
