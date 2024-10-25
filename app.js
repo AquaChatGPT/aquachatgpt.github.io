@@ -46,9 +46,9 @@ async function loadTips() {
     console.log(doc.data().url);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p>';
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p>";
   }else{
- tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p><p><a href='${tipData.url}' + ' target="_blank"'>link</a></p>`;
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='doc.data().url'" + " target='_blank'>link</a></p>";
   }
        tipsContainer.appendChild(tipElement);
   });
