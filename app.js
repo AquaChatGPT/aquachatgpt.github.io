@@ -68,4 +68,4 @@ function formatDate(date) {
     return formatDate.toLocaleTimeString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-
+document.getElementById('back').style.display = 'none';
