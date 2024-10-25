@@ -18,13 +18,13 @@ tipForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("employeeName").value;
   const content = document.getElementById("tipContent").value;
-  const link = document.getElementById("url").value;
+  const links = document.getElementById("urls").value;
 
   try {
     await db.collection("tips").add({
       name: name,
       content: content,
-      url: link,
+      urls: links,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
     tipForm.reset();
