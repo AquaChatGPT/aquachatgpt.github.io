@@ -18,13 +18,13 @@ tipForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("employeeName").value;
   const content = document.getElementById("tipContent").value;
-  const links = document.getElementById("urls").value;
+  const link = document.getElementById("url").value;
 
   try {
     await db.collection("tips").add({
       name: name,
       content: content,
-      urls: links,
+      url: link,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
     tipForm.reset();
@@ -43,7 +43,7 @@ async function loadTips() {
     const tipData = doc.data();
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
-    tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p>`;
+    tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p><p>${tipData.url}</p>`;
     tipsContainer.appendChild(tipElement);
   });
 }
