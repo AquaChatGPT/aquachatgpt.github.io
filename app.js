@@ -36,6 +36,7 @@ tipForm.addEventListener("submit", async (e) => {
 
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
+const tipMessage = document.createElement("message");
 async function loadTips() {
   tipsContainer.innerHTML = "";
   const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
@@ -54,7 +55,7 @@ console.log(date);
   }
        tipsContainer.appendChild(tipElement);
   });
-  document.write("<p style='font-size: 10px;color: grey;'>if you need tip removed contact Chuck Konkol, ext. 4574</p>");
+  tipMessage.innerHTML = "<p style='font-size: 10px;color: grey;'>if you need tip removed contact Chuck Konkol, ext. 4574</p>";
 }
 
 // Initial load
