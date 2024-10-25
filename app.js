@@ -48,9 +48,9 @@ console.log(date);
     console.log(doc.data().url);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p>" + date + "</p>";
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p style='font-size: 10px;'>" + date + "</p>";
   }else{
- tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p>" + date + "</p>";
+ tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;'>" + date + "</p>";
   }
        tipsContainer.appendChild(tipElement);
   });
