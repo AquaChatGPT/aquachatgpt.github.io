@@ -44,8 +44,9 @@ async function loadTips() {
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
     console.log(tipData.url);
-    if ((tipData.url == null) || (tipData.url == "")){
- tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p><p><a href='${tipData.url}';
+    if ((tipData.url == null) || (tipData.url == ""))
+    {
+ tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p>';
   }else{
  tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p><p><a href='${tipData.url}' + ' target="_blank"'>link</a></p>`;
   }
