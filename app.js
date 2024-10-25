@@ -48,11 +48,7 @@ async function loadTips() {
   const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
   snapshot.forEach((doc) => {
     const tipData = doc.data();
-    const timestamp = firebase.firestore.Timestamp.fromDate(new Date());
-    const date0 = timestamp.toDate();
-    //new Date(doc.data().date12).toLocaleDateString("en", options)
-     //new Date(date0.toLocaleDateString("en", options)
-      const date = new Date(date0).toLocaleDateString;
+    const date = formatDate(doc.timestamp());
 console.log(date);
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
@@ -69,3 +65,10 @@ console.log(date);
 
 // Initial load
 loadTips();
+//load date from timestamp
+function formatDate(date) {
+    const formatDate = new Date(
+        date.seconds * 1000 + date.nanoseconds / 1000000
+    );
+    return formatDate.toLocaleTimeString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
