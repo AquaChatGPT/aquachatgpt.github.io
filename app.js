@@ -52,7 +52,7 @@ console.log(date);
   }else{
  tipElement.innerHTML = "<h3>" + doc.data().name + "</h3><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>link</a></p><p style='font-size: 10px;color: grey;'>created: " + date + "</p>";
   }
-       tipsContainer.appendChild(tipElement);
+       tipsContainer.appendChild(tipElement + "<p style='font-size: 10px;color: grey;'>if you need tip removed contact Chuck Konkol, ext. 4574</p>");
   });
 }
 
