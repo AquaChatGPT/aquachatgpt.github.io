@@ -55,7 +55,7 @@ console.log(date);
   }
        tipsContainer.appendChild(tipElement);
   });
-  tipMessage.innerHTML = "<hr><p style='font-size: 10px;color: grey;'>if you need post removed please contact Chuck Konkol, ext. 4574</p>";
+  tipMessage.innerHTML = "<hr><center><p style='font-size: 10px;color: grey;'>If you need a post removed, please contact Chuck Konkol, ext. 4574</p></center>";
 }
 
 // Initial load
