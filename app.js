@@ -2,6 +2,7 @@
 const firebaseConfig = {
   apiKey: "AIzaSyC5TKTjNBh-DZSytinEBqE3hNljs50Zils",
   authDomain: "messageboard-5877c.firebaseapp.com",
+  databaseURL: "https://messageboard-5877c.firebaseio.com",
   projectId: "messageboard-5877c",
   storageBucket: "messageboard-5877c.appspot.com",
   messagingSenderId: "598927182615",
