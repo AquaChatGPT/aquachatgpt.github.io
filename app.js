@@ -1,0 +1,50 @@
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC5TKTjNBh-DZSytinEBqE3hNljs50Zils",
+  authDomain: "messageboard-5877c.firebaseapp.com",
+  projectId: "messageboard-5877c",
+  storageBucket: "messageboard-5877c.appspot.com",
+  messagingSenderId: "598927182615",
+  appId: "1:598927182615:web:bb357812fcf6c0cadf0552"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Form submission
+const tipForm = document.getElementById("tipForm");
+tipForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("employeeName").value;
+  const content = document.getElementById("tipContent").value;
+
+  try {
+    await db.collection("tips").add({
+      name: name,
+      content: content,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    tipForm.reset();
+    loadTips();  // Reload the tips after submission
+  } catch (error) {
+    console.error("Error adding tip: ", error);
+  }
+});
+
+// Load tips from Firestore
+const tipsContainer = document.getElementById("tipsContainer");
+async function loadTips() {
+  tipsContainer.innerHTML = "";
+  const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
+  snapshot.forEach((doc) => {
+    const tipData = doc.data();
+    const tipElement = document.createElement("div");
+    tipElement.classList.add("tip");
+    tipElement.innerHTML = `<h3>${tipData.name}</h3><p>${tipData.content}</p>`;
+    tipsContainer.appendChild(tipElement);
+  });
+}
+
+// Initial load
+loadTips();
