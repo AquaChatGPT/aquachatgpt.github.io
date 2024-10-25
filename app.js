@@ -1,14 +1,13 @@
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC5TKTjNBh-DZSytinEBqE3hNljs50Zils",
+  apiKey: "AIzaSyCNJoIZUAPnXO_L2vQctUIDQROeMzE2Iq0",
   authDomain: "messageboard-5877c.firebaseapp.com",
   databaseURL: "https://messageboard-5877c.firebaseio.com",
   projectId: "messageboard-5877c",
   storageBucket: "messageboard-5877c.appspot.com",
   messagingSenderId: "598927182615",
-  appId: "1:598927182615:web:bb357812fcf6c0cadf0552"
+  appId: "1:598927182615:web:a80846bc7a3d4b33df0552"
 };
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
