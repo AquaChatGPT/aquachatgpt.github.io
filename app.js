@@ -36,7 +36,7 @@ tipForm.addEventListener("submit", async (e) => {
 
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
-const tipMessage = document.createElement("message");
+const tipMessage = document.getElementById("message");
 async function loadTips() {
   tipsContainer.innerHTML = "";
   const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
