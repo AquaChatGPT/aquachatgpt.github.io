@@ -37,12 +37,19 @@ tipForm.addEventListener("submit", async (e) => {
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
 async function loadTips() {
+   var options = {
+               year: "numeric",
+               month: "2-digit",
+               day: "2-digit",
+               hour: "2-digit",
+               minute: "2-digit"
+           };
   tipsContainer.innerHTML = "";
   const snapshot = await db.collection("tips").orderBy("timestamp", "desc").get();
   snapshot.forEach((doc) => {
     const tipData = doc.data();
     const timestamp = firebase.firestore.Timestamp.fromDate(new Date());
-   const date = timestamp.toDate();
+      const date = timestamp.toLocaleDateString("en", options);
 console.log(date);
     const tipElement = document.createElement("div");
     tipElement.classList.add("tip");
