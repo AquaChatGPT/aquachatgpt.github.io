@@ -10,18 +10,30 @@
 </head>
 <body>
   <div class="container">
+    <input type="hidden"  id="id" name="id"> 
     <a href="/"><img id="Aqua-Aerobic Systems, Inc logo" src="aqua.png" width="250px" alt="Go Home"></a><br>
     <h1>ChatGPT<br>Tips & Tricks</h1>
+    <div id="news">
      <center><details name="chatgpt"><summary style='font-size: 9pt;color:blue;'>CLICK HERE TO ADD NEW POST!</summary><article><form id="tipForm">
       <input type="text" id="employeeName" placeholder="Please Enter Your Full Name" required="">
       <textarea id="tipContent" placeholder="Post one of the following:&#10;1) Results you were expecting&#10;2) ChatGPT Tip/Trick" required="" style="height: 100px; width: 430px;"></textarea>
        <input type="text" id="url" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)">
       <button type="submit">Submit</button><br>
     </form></article></details></center>
-    <div id="tipsContainer"></div>
-     <div id="message"></div><br><br>
   </div>
-
+    <div id="tipsContainer"></div>
+    <div id="viewtipsContainer"></div>
+     <div id="message"></div><br><br>
+     <div id="edits">
+      <center><details name="chatgpt" open><summary style='font-size: 9pt;color:blue;' id="viewpost">EDIT POST</summary><article><form id="EditForm">
+        <input type="text" id="employeeName2" placeholder="Please Enter Your Full Name" required="">
+        <textarea id="tipContent2" placeholder="Post one of the following:&#10;1) Results you were expecting&#10;2) ChatGPT Tip/Trick" required="" style="height: 100px; width: 430px;"></textarea>
+         <input type="text" id="url2" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)">
+        <button type="submit" id="viewbutton">Update</button><br>
+      </form></article></details></center>      
+    </div>
+  </div>
+  
   <script src="app.js"></script>
 </body>
 </html>

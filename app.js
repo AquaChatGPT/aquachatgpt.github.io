@@ -41,10 +41,23 @@ remove: 'No'
 });
 });
 
+function replaceSpaces(input)
+{
+    let rep = "%20"
+    for(let i=0 ; i<input.length ; i++)
+    {
+        if(input[i] == ' ')
+            input = input.replace(input[i],rep);
+    }
+    return input;
+}
+
+
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
 const tipMessage = document.getElementById("message");
 async function loadTips() {
+    document.getElementById('edits').style.display = 'none';
     var count;
   tipsContainer.innerHTML = "";
   const snapshot = await db.collection("tips").where("remove", "==","No").orderBy("timestamp", "desc").get();
@@ -55,15 +68,28 @@ async function loadTips() {
    
 console.log(date);
     const tipElement = document.createElement("div");
+   
     tipElement.classList.add("tip");
     console.log(doc.data().url);
      var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
-      removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 9px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>"
+
+     var view = "/?id=" + doc.data().key + "&view=yes";
+     var edit = "/?id=" + doc.data().key
+     //replaceSpaces
+     //<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body=I thought you might find this information interesting: ' + window.location;">Email</a>
+     var share = "https://aquachatgpt.github.io" + view;
+     removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 9px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
+     edit = "<a href='" + edit + "' style='font-size: 9px;color: darkgrey;'>edit</a>";
+     view = "<a href='" + view + "' style='font-size: 9px;color: darkgrey;'>view</a>";
+      //<a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>
+     share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website&body=' + share + '">Share</a>'
+    
+     console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + " ...  By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + " ...  By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -104,6 +130,122 @@ async function loadRemovedTips() {
 
   }
 
+  var clear = function(){
+    document.getElementById('news').style.display = 'none';
+    document.getElementById('tipsContainer').style.display = 'none';
+    document.getElementById('edits').style.display = 'none';
+    document.getElementById('message').style.display = 'none';
+    //document.getElementById('id').style.display = 'contents';
+}
+
+var unclear = function(){
+    document.getElementById('news').style.display = 'none';
+    document.getElementById('tipsContainer').style.display = 'none';
+    document.getElementById('edits').style.display = 'none';
+    document.getElementById('message').style.display = 'block';
+    //document.getElementById('id').style.display = 'contents';
+}
+
+var loadit = function(){
+    document.getElementById('news').style.display = 'block';
+    document.getElementById('tipsContainer').style.display = 'block';
+    document.getElementById('edits').style.display = 'block';
+    document.getElementById('message').style.display = 'none';
+    //document.getElementById('id').style.display = 'contents';
+}
+
+var reload = function(){
+    window.history.replaceState(null, '', window.location.pathname);
+    location.reload();
+}
+
+var loadEdit = function(data){
+    var count;
+    var db = firebase.firestore();
+    var get_id = data["id"];
+    console.log("ID is: " + get_id);
+    db.collection("tips").where("key", "==",get_id)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            count = querySnapshot.size;
+
+     //var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
+     document.getElementById("id").value = get_id
+     document.getElementById("employeeName2").value = doc.data().name;
+     document.getElementById("tipContent2").value = doc.data().content;
+     document.getElementById("url2").value = doc.data().url;
+  });
+});
+clear();
+console.log("count is asdasd:  "  + count);
+ }
+
+ var loadView = function(data){
+    unclear();
+  //  document.write("");
+    var count;
+    var db = firebase.firestore();
+    var get_id = data["id"];
+    console.log("loadview: " + get_id);
+    const tipsContainer = document.getElementById("viewtipsContainer");
+    tipsContainer.innerHTML = "";
+    tipMessage.innerHTML = "";
+const tipElement = document.createElement("div");
+tipElement.classList.add("tip");
+    db.collection("tips").where("key", "==",get_id)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const date = formatDate(doc.data().timestamp);
+            count = querySnapshot.size;
+            var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
+            var view = "/?id=" + doc.data().key + "&view=yes";
+            var edit = "/?id=" + doc.data().key;
+            removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 9px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
+            edit = "<a href='" + edit + "' style='font-size: 9px;color: darkgrey;'>edit</a>";
+            view = "<a href='" + view + "' style='font-size: 9px;color: darkgrey;'>view</a>";
+        if ((doc.data().url == null) || (doc.data().url == ""))
+           {
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
+         }else{
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + " ...  By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
+         }
+               tipsContainer.appendChild(tipElement);
+          });
+          console.log("count is: " + count);
+          if (count == undefined){
+              tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Data, Please Go Home!</p></center>";
+          }
+          tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  });
+console.log("count is asdasd:  "  + count);
+setTimeout(openit, 1000)
+ }
+
+ function openit() {
+    document.getElementById("chats").open = true;
+  }
+ // Form submission
+const EditForm = document.getElementById("EditForm");
+EditForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  var id = document.getElementById("id").value;
+  var content = document.getElementById("tipContent2").value;
+  var link = document.getElementById("url2").value;
+  console.log("id: " + id );
+  console.log("content: " + content );
+  console.log("link: " + link );
+  var datas = {
+    "id": id,
+    "tipcontent": content,
+    "url": link
+}
+console.log("datas: " + datas.tipcontent );
+updatedatabase(datas);
+});
+
+
 // Initial load
 loadTips();
 //load date from timestamp
@@ -121,8 +263,8 @@ var updateremoveYes = function(data){
       remove: 'Yes'
   }) .then(function(doc) {
       console.log("doc updated");
-      loadTips();
-      window.history.replaceState(null, '', window.location.pathname);
+      clear();
+      reload();
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
@@ -135,8 +277,8 @@ var updateremoveNO = function(data){
       remove: 'No'
   }) .then(function(doc) {
       console.log("doc updated");
-      loadTips();
-      window.history.replaceState(null, '', window.location.pathname);
+      clear();
+      reload();
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
@@ -152,6 +294,8 @@ var id = urlParams.get('id')
 console.log(id);
 var id_remove = urlParams.get('Remove')
 console.log("Remove:" + id_remove);
+var idview = urlParams.get('view')
+console.log("idview:" + idview);
 if ((id_remove === 'Yes') && (id != null && id != '')) {
     var data = {
         "id": id
@@ -169,3 +313,43 @@ if ((id_remove === 'No') && (id != null && id != '')) {
 } else {
     console.log('string IS empty');
 }   
+
+if (id != null && id != '') {
+    var data = {
+        "id": id
+    }
+    loadEdit(data);
+} else {
+    console.log('string IS empty');
+}    
+
+if ((id != null && id != '') && (idview === 'yes' )) {
+    var data = {
+        "id": id
+    }
+    loadView(data);
+} else {
+    console.log('string IS empty');
+}     
+
+
+var updatedatabase = function(data){
+    var db = firebase.firestore();
+    var key = data["id"];
+    var tipcontent = data["tipcontent"];
+    var url = data["url"];
+    console.log("key is: " + key);
+    console.log("content is: " + tipcontent);
+    console.log("url is: " + url);
+    db.collection("tips").doc(key).update({
+        content: data["tipcontent"],
+        url: data["url"]
+    }) .then(function(doc) {
+        console.log("doc updated");
+        window.history.replaceState(null, '', window.location.pathname);
+        location.reload();
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+}
+
