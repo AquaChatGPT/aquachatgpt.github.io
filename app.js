@@ -58,6 +58,7 @@ const tipsContainer = document.getElementById("tipsContainer");
 const tipMessage = document.getElementById("message");
 async function loadTips() {
     document.getElementById('edits').style.display = 'none';
+    document.getElementById('removeit').style.display = 'block';
     var count;
   tipsContainer.innerHTML = "";
   const snapshot = await db.collection("tips").where("remove", "==","No").orderBy("timestamp", "desc").get();
@@ -100,6 +101,7 @@ console.log(date);
 }
 
 async function loadRemovedTips() {
+    document.getElementById('removeit').style.display = 'none';
     var count;
     tipsContainer.innerHTML = "";
     const snapshot = await db.collection("tips").where("remove", "==","Yes").orderBy("timestamp", "desc").get();
@@ -112,7 +114,7 @@ async function loadRemovedTips() {
       tipElement.classList.add("tip");
       console.log(doc.data().url);
       var removewebsiteNo = "/?id=" + doc.data().key + "&Remove=No";
-      removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: darkgrey;'>Click here to restore this post!</a>"
+      removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
    tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
