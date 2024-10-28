@@ -150,7 +150,7 @@ var loadit = function(){
     document.getElementById('news').style.display = 'block';
     document.getElementById('tipsContainer').style.display = 'block';
     document.getElementById('edits').style.display = 'block';
-    document.getElementById('message').style.display = 'none';
+    document.getElementById('message').style.display = 'block';
     //document.getElementById('id').style.display = 'contents';
 }
 
@@ -160,6 +160,7 @@ var reload = function(){
 }
 
 var loadEdit = function(data){
+    tipMessage.innerHTML  = "";
     var count;
     var db = firebase.firestore();
     var get_id = data["id"];
@@ -176,8 +177,11 @@ var loadEdit = function(data){
      document.getElementById("tipContent2").value = doc.data().content;
      document.getElementById("url2").value = doc.data().url;
   });
+  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+
 });
 clear();
+setTimeout(openedit, 1000)
 console.log("count is asdasd:  "  + count);
  }
 
@@ -241,6 +245,12 @@ setTimeout(openit, 1000)
 
  function openit() {
     document.getElementById("chats").open = true;
+  }
+
+  function openedit(){
+    document.getElementById('tipsContainer').style.display = 'none';
+    document.getElementById('edits').style.display = 'block';
+    document.getElementById('message').style.display = 'block';
   }
  // Form submission
 const EditForm = document.getElementById("EditForm");
