@@ -233,7 +233,7 @@ tipElement.classList.add("tip");
           }
           // window.location.href = "mailto:?subject=" + document.title + "&body=" + encodeURI(document.location);
           //<button onclick="emailCurrentPage()">Email page</button>
-          tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p><button onclick='emailCurrentPage()'>Email page</button></center>";
+          tipMessage.innerHTML = "<hr><center><br><button onclick='emailCurrentPage()'>Email This Example!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
   });
 console.log("count is asdasd:  "  + count);
 setTimeout(openit, 1000)
