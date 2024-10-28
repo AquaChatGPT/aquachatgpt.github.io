@@ -71,7 +71,7 @@ console.log(date);
   if (count == undefined){
       tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Posts, Create One!</p></center>";
   }
-  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments? Please Contact Chuck Konkol, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
 }
 
 async function loadRemovedTips() {
@@ -100,7 +100,7 @@ async function loadRemovedTips() {
     if (count == undefined){
         tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Data, Please Go Home!</p></center>";
     }
-    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact Chuck Konkol, ext 4574</p></center>";
+    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
 
   }
 
