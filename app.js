@@ -11,7 +11,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
+var subject = "";
 // Form submission
 const tipForm = document.getElementById("tipForm");
 tipForm.addEventListener("submit", async (e) => {
@@ -79,17 +79,17 @@ console.log(date);
      //<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body=I thought you might find this information interesting: ' + window.location;">Email</a>
      var share = "https://aquachatgpt.github.io" + view;
      removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
-     edit = "<a href='" + edit + "' style='font-size: 10px;color: darkgrey;'>edit</a>";
-     view = "<a href='" + view + "' style='font-size: 10px;color: darkgrey;'>view</a>";
+     edit = "<a href='" + edit + "' style='font-size: 10px;color: slateblue;'>Edit</a>";
+     view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>Share</a>";
       //<a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>
      share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website&body=' + share + '">Share</a>'
     
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,27) + "... </summary><article><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + " ...  By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,27) + " ... </summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -193,7 +193,7 @@ console.log("count is asdasd:  "  + count);
      strrep= ptitle.replace(/"/g,'%22');
      strrep= ptitle.replace(/&/g,'%26');
      
-     var mailtourl = "mailto:?subject=AquaChatGPT%20Example&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
+     var mailtourl = "mailto:?subject=AquaChatGPT: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
      location.href = mailtourl;
      return false
    
@@ -217,11 +217,12 @@ tipElement.classList.add("tip");
             const date = formatDate(doc.data().timestamp);
             count = querySnapshot.size;
             var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
+            subject = doc.data().content.substr(0,30) + "... By: " + doc.data().name;
             var view = "/?id=" + doc.data().key + "&view=yes";
             var edit = "/?id=" + doc.data().key;
             removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
-            edit = "<a href='" + edit + "' style='font-size: 10px;color: darkgrey;'>edit</a>";
-            view = "<a href='" + view + "' style='font-size: 10px;color: darkgrey;'>view</a>";
+            edit = "<a href='" + edit + "' style='font-size: 10px;color: slateblue;'>Edit</a>";
+            view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>View</a>";
         if ((doc.data().url == null) || (doc.data().url == ""))
            {
         tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
