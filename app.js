@@ -83,13 +83,13 @@ console.log(date);
      view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>Share</a>";
       //<a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>
      share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website&body=' + share + '">Share</a>'
-    
+    //doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,27) + "... </summary><article><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + " </summary><article><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,27) + " ... </summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "," + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
