@@ -63,7 +63,7 @@ console.log(date);
     {
  tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + "... <font color='lightgrey'> By: " + doc.data().name  + "</font></summary><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteYes + "</p></center>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + " ... <font color='lightgrey'> By: " + doc.data().name + "</font></summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>Click here to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteYes + "</p></center>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + " ... <font color='lightgrey'> By: " + doc.data().name + "</font></summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteYes + "</p></center>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -92,7 +92,7 @@ async function loadRemovedTips() {
       {
    tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name  + "</summary><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center>";
     }else{
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name + "</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>Click here to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 9pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name + "</summary><p>" + doc.data().content + "</p><p><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center>";
     }
          tipsContainer.appendChild(tipElement);
     });
