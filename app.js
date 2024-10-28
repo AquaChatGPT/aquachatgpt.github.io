@@ -181,6 +181,20 @@ clear();
 console.log("count is asdasd:  "  + count);
  }
 
+ function emailCurrentPage() {
+   
+
+        var strrep ,ptitle = document.title;
+     
+     strrep= ptitle.replace(/"/g,'%22');
+     strrep= ptitle.replace(/&/g,'%26');
+     
+     var mailtourl = "mailto:?subject=AquaChatGPT%20Example&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
+     location.href = mailtourl;
+     return false
+   
+}
+
  var loadView = function(data){
     unclear();
   //  document.write("");
@@ -217,7 +231,9 @@ tipElement.classList.add("tip");
           if (count == undefined){
               tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Data, Please Go Home!</p></center>";
           }
-          tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+          // window.location.href = "mailto:?subject=" + document.title + "&body=" + encodeURI(document.location);
+          //<button onclick="emailCurrentPage()">Email page</button>
+          tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p><button onclick='emailCurrentPage()'>Email page</button></center>";
   });
 console.log("count is asdasd:  "  + count);
 setTimeout(openit, 1000)
