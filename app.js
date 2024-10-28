@@ -201,7 +201,6 @@ console.log("count is asdasd:  "  + count);
 
  var loadView = function(data){
     unclear();
-  //  document.write("");
     var count;
     var db = firebase.firestore();
     var get_id = data["id"];
@@ -245,6 +244,7 @@ setTimeout(openit, 1000)
 
  function openit() {
     document.getElementById("chats").open = true;
+    document.getElementById('edits').style.display = 'none';
   }
 
   function openedit(){
