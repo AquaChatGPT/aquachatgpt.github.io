@@ -87,9 +87,9 @@ console.log(date);
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -97,7 +97,7 @@ console.log(date);
   if (count == undefined){
       tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Posts, Create One!</p></center>";
   }
-  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
 }
 
 async function loadRemovedTips() {
@@ -117,9 +117,9 @@ async function loadRemovedTips() {
       removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }else{
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ... By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }
          tipsContainer.appendChild(tipElement);
     });
@@ -127,7 +127,7 @@ async function loadRemovedTips() {
     if (count == undefined){
         tipsContainer.innerHTML = "<center><p style='font-size: 10px;color: red;'>No Data, Please Go Home!</p></center>";
     }
-    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
 
   }
 
@@ -178,7 +178,7 @@ var loadEdit = function(data){
      document.getElementById("tipContent2").value = doc.data().content;
      document.getElementById("url2").value = doc.data().url;
   });
-  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
 
 });
 clear();
@@ -226,9 +226,9 @@ tipElement.classList.add("tip");
             view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>View</a>";
         if ((doc.data().url == null) || (doc.data().url == ""))
            {
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + "... By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
          }else{
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,20) + " ...  By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
          }
                tipsContainer.appendChild(tipElement);
           });
@@ -238,7 +238,7 @@ tipElement.classList.add("tip");
           }
           // window.location.href = "mailto:?subject=" + document.title + "&body=" + encodeURI(document.location);
           //<button onclick="emailCurrentPage()">Email page</button>
-          tipMessage.innerHTML = "<hr><center><br><button onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments? Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+          tipMessage.innerHTML = "<hr><center><br><button onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
   });
 console.log("count is asdasd:  "  + count);
 setTimeout(openit, 1000)
