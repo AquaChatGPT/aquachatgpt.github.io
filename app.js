@@ -194,7 +194,7 @@ console.log("count is asdasd:  "  + count);
      strrep= ptitle.replace(/"/g,'%22');
      strrep= ptitle.replace(/&/g,'%26');
      
-     var mailtourl = "mailto:?subject=AquaChatGPT: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
+     var mailtourl = "mailto:?subject=AquaAI: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
      location.href = mailtourl;
      return false
    
