@@ -79,9 +79,9 @@ console.log(date);
      //replaceSpaces
      //<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body=I thought you might find this information interesting: ' + window.location;">Email</a>
      var share = "https://aquachatgpt.github.io" + view;
-     removewebsiteYes = "<p style='text-align: right;'><a href='" + removewebsiteYes + "' title='This can be restored!' style='font-size: 10px;color: slateblue;'>Remove this post!</a></p>";
+     removewebsiteYes = "<p style='text-align: right;'><a href='" + removewebsiteYes + "' title='This can be restored!' style='font-size: 10px;color: #9f9494;'>Remove this post!</a></p>";
      edit = "<a href='" + edit + "' style='font-size: 10px;color: slateblue;'>Edit</a>";
-     view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>Share</a>";
+     view = "<a href='" + view + "' style='font-size: 10px;color: blue;'>Share</a>";
       //<a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>
      share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website&body=' + share + '">Share</a>'
      console.log("Share " + share);
