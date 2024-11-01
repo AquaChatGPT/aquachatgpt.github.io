@@ -20,8 +20,9 @@
       <input type="text" id="employeeName" placeholder="Please Enter Your Full Name" required="">
       <textarea id="tipContent" placeholder="Post one of the following:&#10;1) Results you were expecting&#10;2) ChatGPT Tip/Trick" required="" style="height: 100px; width: 430px;"></textarea>
        <input type="text" id="url" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)">
-       <textarea id="summary" placeholder="4) Please summarize results&#10;   a) How accurate were initial results?&#10;      (10%, 50%, 90%,etc.)&#10;   b) Were you able to improve accuracy?&#10;      If so, how?&#10;   c) How much time would this save you?" style="height: 140px; width: 430px;"></textarea>
-      <button type="submit">Submit</button><br>
+       <textarea id="summary" placeholder="4) Please summarize results **&#10;   a) How accurate were initial results?&#10;      (10%, 50%, 90%,etc.)&#10;   b) Were you able to improve accuracy?&#10;      If so, how?&#10;   c) How much time would this save you?" style="height: 140px; width: 430px;"></textarea>
+       <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>
+       <button type="submit">Submit</button><br>
     </form></article></details></center>
   </div>
      <div id="edits">
@@ -34,6 +35,7 @@
         <input type="text" id="url2" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)">
         <label style="text-align: left;"><b>Summary:</b></label>
         <textarea id="summary2" placeholder="Please summarize results&#10;   a) How accurate were initial results?&#10;      (10%, 50%, 90%,etc.)&#10;   b) Were you able to improve accuracy?&#10;      If so, how?&#10;   c) How much time would this save you?" style="height: 140px; width: 430px;"></textarea>
+        <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary2()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>
         <button type="submit" id="viewbutton">Update</button><br>
       </form></article></details></center>      
     </div>

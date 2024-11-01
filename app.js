@@ -53,7 +53,31 @@ function replaceSpaces(input)
     }
     return input;
 }
+//Load questions for summary
 
+function copysummary(){
+    var summarycopy ="Summary of results:\n1) How accurate were initial results?\n   (10%, 50%, 90%,etc.)\n2) Were you able to improve accuracy?\n   If so, how?\n3) How much time would this save you?"
+    var x = document.getElementById("summary").value;
+    if ((x == null) || (x == ""))
+    {
+document.getElementById("summary").value = summarycopy
+    }else{
+document.getElementById("summary").value = x + "\n\n" + summarycopy
+    }
+    
+}
+
+function copysummary2(){
+    var summarycopy ="Summary of results:\n1) How accurate were initial results?\n   (10%, 50%, 90%,etc.)\n2) Were you able to improve accuracy?\n   If so, how?\n3) How much time would this save you?"
+    var x = document.getElementById("summary2").value;
+    if ((x == null) || (x == ""))
+    {
+document.getElementById("summary2").value = summarycopy
+    }else{
+document.getElementById("summary2").value = x + "\n\n" + summarycopy
+    }
+    
+}
 
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
@@ -91,8 +115,10 @@ console.log(date);
      {
         review = "";
      }else{
-        review = "<br><b>Summary:</b><p>" + doc.data().summary + "</p><br><b>";
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />') + "</p><br><b>";
      }
+
+     
 
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
@@ -130,7 +156,7 @@ async function loadRemovedTips() {
      {
         review = "";
      }else{
-        review = "<br><b>Summary:</b><p>" + doc.data().summary + "</p><br><b>";
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />') + "</p><br><b>";
      }
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
@@ -247,7 +273,7 @@ tipElement.classList.add("tip");
      {
         review = "";
      }else{
-        review = "<br><b>Summary:</b><p>" + doc.data().summary + "</p><br><b>";
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />')+ "</p><br><b>";
      }
         if ((doc.data().url == null) || (doc.data().url == ""))
            {
