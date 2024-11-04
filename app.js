@@ -19,6 +19,7 @@ tipForm.addEventListener("submit", async (e) => {
   const name = document.getElementById("employeeName").value;
   const content = document.getElementById("tipContent").value;
   const link = document.getElementById("url").value;
+  const summary = document.getElementById("summary").value;
   var start = new Date();
   var timeadded = new Date(start.getTime() - (start.getTimezoneOffset() * 60000)).toISOString();
   //console.log(d.toString().slice(0, 19));
@@ -31,6 +32,7 @@ content: content,
 url: link,
 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 key:id,
+summary: summary,
 remove: 'No'
 })
 .then(function(doc) {  
@@ -51,7 +53,31 @@ function replaceSpaces(input)
     }
     return input;
 }
+//Load questions for summary
 
+function copysummary(){
+    var summarycopy ="Summary of results:\n1) How accurate were initial results?\n   (10%, 50%, 90%,etc.)\n2) Were you able to improve accuracy?\n   If so, how?\n3) How much time would this save you?"
+    var x = document.getElementById("summary").value;
+    if ((x == null) || (x == ""))
+    {
+document.getElementById("summary").value = summarycopy
+    }else{
+document.getElementById("summary").value = x + "\n\n" + summarycopy
+    }
+    
+}
+
+function copysummary2(){
+    var summarycopy ="Summary of results:\n1) How accurate were initial results?\n   (10%, 50%, 90%,etc.)\n2) Were you able to improve accuracy?\n   If so, how?\n3) How much time would this save you?"
+    var x = document.getElementById("summary2").value;
+    if ((x == null) || (x == ""))
+    {
+document.getElementById("summary2").value = summarycopy
+    }else{
+document.getElementById("summary2").value = x + "\n\n" + summarycopy
+    }
+    
+}
 
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
@@ -79,17 +105,27 @@ console.log(date);
      //replaceSpaces
      //<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body=I thought you might find this information interesting: ' + window.location;">Email</a>
      var share = "https://aquachatgpt.github.io" + view;
-     removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: slateblue;'>Remove this post! (this can be restored)</a>";
-     edit = "<a href='" + edit + "' style='font-size: 10px;color: slateblue;'>Edit</a>";
-     view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>Share</a>";
+     removewebsiteYes = "<p style='text-align: right;'><a href='" + removewebsiteYes + "' title='Click to remove (this can be restored!)' style='font-size: 10px;color: #9f9494;'>Remove this post!</a></p>";
+     edit = "<a href='" + edit + "'  title='Click to edit finding' style='font-size: 10px;color: slateblue;'>Edit</a>";
+     view = "<a href='" + view + "'  title='Click to share finding with the Aqua AI Team!' style='font-size: 10px;color: blue;'>Share</a>";
       //<a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>
-     share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website&body=' + share + '">Share</a>'
+     share = '<a href="mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website&body=' + share + '">Share</a>'
+     var review = doc.data().summary;
+     if ((review == null) || (review == ""))
+     {
+        review = "";
+     }else{
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />') + "</p><br><b>";
+     }
+
+     
+
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "'  title='Click to view link' target='_blank'>Click to view ChatGPT conversation or website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -97,7 +133,7 @@ console.log(date);
   if (count == undefined){
       tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Posts, Create One!</p></center>";
   }
-  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
 }
 
 async function loadRemovedTips() {
@@ -115,11 +151,18 @@ async function loadRemovedTips() {
       console.log(doc.data().url);
       var removewebsiteNo = "/?id=" + doc.data().key + "&Remove=No";
       removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
+      var review = doc.data().summary;
+     if ((review == null) || (review == ""))
+     {
+        review = "";
+     }else{
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />') + "</p><br><b>";
+     }
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name  + "</summary><article><p>" + doc.data().content + "</p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name  + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }else{
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name + "</summary><article><p>" + doc.data().content + "</p><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p><center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p><br><b>LINK:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }
          tipsContainer.appendChild(tipElement);
     });
@@ -127,7 +170,7 @@ async function loadRemovedTips() {
     if (count == undefined){
         tipsContainer.innerHTML = "<center><p style='font-size: 10px;color: red;'>No Data, Please Go Home!</p></center>";
     }
-    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574<br><br><i>inactive posts will be removed after 30 days</i></p></center>";
 
   }
 
@@ -177,8 +220,9 @@ var loadEdit = function(data){
      document.getElementById("employeeName2").value = doc.data().name;
      document.getElementById("tipContent2").value = doc.data().content;
      document.getElementById("url2").value = doc.data().url;
+     document.getElementById("summary2").value = doc.data().summary;
   });
-  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
 
 });
 clear();
@@ -194,7 +238,7 @@ console.log("count is asdasd:  "  + count);
      strrep= ptitle.replace(/"/g,'%22');
      strrep= ptitle.replace(/&/g,'%26');
      
-     var mailtourl = "mailto:?subject=AquaChatGPT: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
+     var mailtourl = "mailto:?subject=AI Team: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
      location.href = mailtourl;
      return false
    
@@ -222,13 +266,20 @@ tipElement.classList.add("tip");
             var view = "/?id=" + doc.data().key + "&view=yes";
             var edit = "/?id=" + doc.data().key;
             removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
-            edit = "<a href='" + edit + "' style='font-size: 10px;color: slateblue;'>Edit</a>";
+            edit = "<a href='" + edit + "' title='Click to edit finding' style='font-size: 10px;color: slateblue;'>Edit</a>";
             view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>View</a>";
+            var review = doc.data().summary;
+     if ((review == null) || (review == ""))
+     {
+        review = "";
+     }else{
+        review = "<br><b>Summary:</b><p>" + review.replace(/\r?\n/g, '<br />')+ "</p><br><b>";
+     }
         if ((doc.data().url == null) || (doc.data().url == ""))
            {
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
          }else{
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,30) + " ...<br>By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>Click to view ChatGPT conversation or website!</a></p><hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' title='Click to view link'  target='_blank'>Click to view ChatGPT conversation or website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
          }
                tipsContainer.appendChild(tipElement);
           });
@@ -238,7 +289,7 @@ tipElement.classList.add("tip");
           }
           // window.location.href = "mailto:?subject=" + document.title + "&body=" + encodeURI(document.location);
           //<button onclick="emailCurrentPage()">Email page</button>
-          tipMessage.innerHTML = "<hr><center><br><button onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ Aqua ChatGPT Website'>Chuck Konkol</a>, ext 4574</p></center>";
+          tipMessage.innerHTML = "<hr><center><br><button title='Click to create email & share now!' onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
   });
 console.log("count is asdasd:  "  + count);
 setTimeout(openit, 1000)
@@ -261,13 +312,16 @@ EditForm.addEventListener("submit", async (e) => {
   var id = document.getElementById("id").value;
   var content = document.getElementById("tipContent2").value;
   var link = document.getElementById("url2").value;
+  var summary = document.getElementById("summary2").value;
   console.log("id: " + id );
   console.log("content: " + content );
   console.log("link: " + link );
+  console.log("summary: " + summary );
   var datas = {
     "id": id,
     "tipcontent": content,
-    "url": link
+    "url": link,
+    "summary": summary
 }
 console.log("datas: " + datas.tipcontent );
 updatedatabase(datas);
@@ -366,12 +420,15 @@ var updatedatabase = function(data){
     var key = data["id"];
     var tipcontent = data["tipcontent"];
     var url = data["url"];
+    var summary = data["summary"];
     console.log("key is: " + key);
     console.log("content is: " + tipcontent);
     console.log("url is: " + url);
+    console.log("summary is: " + summary);
     db.collection("tips").doc(key).update({
         content: data["tipcontent"],
-        url: data["url"]
+        url: data["url"],
+        summary: data["summary"]
     }) .then(function(doc) {
         console.log("doc updated");
         window.history.replaceState(null, '', window.location.pathname);
