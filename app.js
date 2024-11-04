@@ -152,6 +152,7 @@ async function loadRemovedTips() {
       var removewebsiteNo = "/?id=" + doc.data().key + "&Remove=No";
       removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
       var review = doc.data().summary;
+      var titletext = '<center><font size="3"><b>Inactive Posts</b></font></center><br>';
      if ((review == null) || (review == ""))
      {
         review = "";
@@ -160,9 +161,9 @@ async function loadRemovedTips() {
      }
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name  + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = titletext + "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name  + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }else{
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p><br><b>LINK:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = titletext + "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p><br><b>LINK:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view ChatGPT conversation or website!</a></p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }
          tipsContainer.appendChild(tipElement);
     });
