@@ -12,16 +12,23 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const database = firebase.database();
-const typed = new Typed('#typed', {
-    stringsElement: '#typed-strings',
-    typeSpeed: 40
-  });
+
+
 
 //add counter
 // Reference to the visitor count in the database
 const visitCountRef = database.ref('visitCount');
  // Increment the visit count
+//AquaAI Team Interactions
+//document.getElementById('typed').innerText = "AquaAI Team Interactions";
+function settext(){
+    const typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 40
+      });
 
+
+}
  function getcount(){
   
     visitCountRef.transaction(currentCount => {
@@ -40,8 +47,8 @@ const visitCountRef = database.ref('visitCount');
     });
     
  }
-
- setTimeout(getcount, 2000);
+ setTimeout(settext, 2000);
+ setTimeout(getcount, 4000);
 
 //
 var subject = "";
