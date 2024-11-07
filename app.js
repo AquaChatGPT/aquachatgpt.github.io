@@ -11,6 +11,39 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const database = firebase.database();
+const typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    typeSpeed: 40
+  });
+
+//add counter
+// Reference to the visitor count in the database
+const visitCountRef = database.ref('visitCount');
+ // Increment the visit count
+
+ function getcount(){
+  
+    visitCountRef.transaction(currentCount => {
+        if (currentCount === null) {
+            return 1; // Initial visit count
+        } else {
+            return currentCount + 1; // Increment the visit count
+        }
+    }).then(() => {
+        // Retrieve the updated visit count and display it
+        visitCountRef.on('value', snapshot => {
+            document.getElementById('visitCount').innerText = snapshot.val();
+        });
+    }).catch(error => {
+        console.error('Error updating visit count:', error);
+    });
+    
+ }
+
+ setTimeout(getcount, 2000);
+
+//
 var subject = "";
 // Form submission
 const tipForm = document.getElementById("tipForm");
