@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const database = firebase.database();
 
-
+document.getElementById("counters").style.display = "none";
 
 //add counter
 // Reference to the visitor count in the database
@@ -22,6 +22,7 @@ const visitCountRef = database.ref('visitCount');
 //AquaAI Team Interactions
 //document.getElementById('typed').innerText = "AquaAI Team Interactions";
 function settext(){
+    document.getElementById("counters").style.display = "block";
     const typed = new Typed('#typed', {
         stringsElement: '#typed-strings',
         typeSpeed: 40
