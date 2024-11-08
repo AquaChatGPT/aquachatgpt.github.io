@@ -11,6 +11,47 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const database = firebase.database();
+
+document.getElementById("counters").style.display = "none";
+
+//add counter
+// Reference to the visitor count in the database
+const visitCountRef = database.ref('visitCount');
+ // Increment the visit count
+//AquaAI Team Interactions
+//document.getElementById('typed').innerText = "AquaAI Team Interactions";
+function settext(){
+    document.getElementById("counters").style.display = "block";
+    const typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 40
+      });
+
+
+}
+ function getcount(){
+  
+    visitCountRef.transaction(currentCount => {
+        if (currentCount === null) {
+            return 1; // Initial visit count
+        } else {
+            return currentCount + 1; // Increment the visit count
+        }
+    }).then(() => {
+        // Retrieve the updated visit count and display it
+        visitCountRef.on('value', snapshot => {
+            document.getElementById('visitCount').innerText = snapshot.val();
+        });
+    }).catch(error => {
+        console.error('Error updating visit count:', error);
+    });
+    
+ }
+ setTimeout(settext, 2000);
+ setTimeout(getcount, 4000);
+
+//
 var subject = "";
 // Form submission
 const tipForm = document.getElementById("tipForm");
@@ -140,6 +181,10 @@ async function loadRemovedTips() {
     document.getElementById('removeit').style.display = 'none';
     var count;
     tipsContainer.innerHTML = "";
+    const reviewElement = document.createElement("div");
+    reviewElement.innerHTML= '<center><font size="3"><b>Inactive Posts</b></font></center>';
+    reviewElement.classList.add("review");
+    tipsContainer.appendChild(reviewElement);
     const snapshot = await db.collection("tips").where("remove", "==","Yes").orderBy("timestamp", "desc").get();
     snapshot.forEach((doc) => {
         count = snapshot.size;
@@ -148,6 +193,7 @@ async function loadRemovedTips() {
   console.log(date);
       const tipElement = document.createElement("div");
       tipElement.classList.add("tip");
+      reviewElement.classList.add("review");
       console.log(doc.data().url);
       var removewebsiteNo = "/?id=" + doc.data().key + "&Remove=No";
       removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
@@ -170,7 +216,7 @@ async function loadRemovedTips() {
     if (count == undefined){
         tipsContainer.innerHTML = "<center><p style='font-size: 10px;color: red;'>No Data, Please Go Home!</p></center>";
     }
-    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574<br><br><i>inactive posts will be removed after 30 days</i></p></center>";
+    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574<br><br><i>inactive posts will be removed periodically.</i></p></center>";
 
   }
 
