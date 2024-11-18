@@ -18,6 +18,7 @@ document.getElementById("counters").style.display = "none";
 //add counter
 // Reference to the visitor count in the database
 const visitCountRef = database.ref('visitCount');
+const visitCountRefDate = database.ref('visitCountDate');
  // Increment the visit count
 //AquaAI Team Interactions
 //document.getElementById('typed').innerText = "AquaAI Team Interactions";
@@ -30,26 +31,53 @@ function settext(){
 
 
 }
+
+function loadip() {
+    getText("https://api.ipify.org?format=js");
+    async function getText(file) {
+        let x = await fetch(file);
+        let y = await x.text();
+        document.getElementById("ip").value = y;
+    }
+}
+
  function getcount(){
-  
     visitCountRef.transaction(currentCount => {
         if (currentCount === null) {
             return 1; // Initial visit count
-        } else {
+} else {
             return currentCount + 1; // Increment the visit count
         }
     }).then(() => {
         // Retrieve the updated visit count and display it
         visitCountRef.on('value', snapshot => {
             document.getElementById('visitCount').innerText = snapshot.val();
+const currentDate = new Date();
+const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+};
+   const newData = {
+       count: snapshot.val(), // Unique identifier for the user
+       datevisited: currentDate.toLocaleDateString('en', options),
+       ipaddress: document.getElementById("ip").value
+   };
+    visitCountRefDate.push(newData);
         });
     }).catch(error => {
         console.error('Error updating visit count:', error);
-    });
-    
- }
- setTimeout(settext, 2000);
- setTimeout(getcount, 4000);
+});
+
+   
+}
+
+ setTimeout(loadip, 1000);
+ setTimeout(settext, 3000);
+ setTimeout(getcount, 5000);
 
 //
 var subject = "";
