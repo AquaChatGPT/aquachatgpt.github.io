@@ -123,6 +123,7 @@ document.getElementById("summary2").value = x + "\n\n" + summarycopy
 // Load tips from Firestore
 const tipsContainer = document.getElementById("tipsContainer");
 const tipMessage = document.getElementById("message");
+const footer = document.getElementById("footer");
 async function loadTips() {
     document.getElementById('edits').style.display = 'none';
     document.getElementById('removeit').style.display = 'block';
@@ -174,7 +175,10 @@ console.log(date);
   if (count == undefined){
       tipsContainer.innerHTML = "<center><p style='font-size: 9px;color: red;'>No Posts, Create One!</p></center>";
   }
-  tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  //tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'><br><a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a></p></center>";
+  footer.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+
 }
 
 async function loadRemovedTips() {
@@ -216,7 +220,7 @@ async function loadRemovedTips() {
     if (count == undefined){
         tipsContainer.innerHTML = "<center><p style='font-size: 10px;color: red;'>No Data, Please Go Home!</p></center>";
     }
-    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574<br><br><i>inactive posts will be removed periodically.</i></p></center>";
+    tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadTips()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><i>inactive posts will be removed periodically.</i></p></center>";
 
   }
 
@@ -268,7 +272,7 @@ var loadEdit = function(data){
      document.getElementById("url2").value = doc.data().url;
      document.getElementById("summary2").value = doc.data().summary;
   });
-  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  tipMessage.innerHTML = "<hr><center><br><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a></p></center>";
 
 });
 clear();
@@ -335,7 +339,7 @@ tipElement.classList.add("tip");
           }
           // window.location.href = "mailto:?subject=" + document.title + "&body=" + encodeURI(document.location);
           //<button onclick="emailCurrentPage()">Email page</button>
-          tipMessage.innerHTML = "<hr><center><br><button title='Click to create email & share now!' onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+          tipMessage.innerHTML = "<hr><center><br><button title='Click to create email & share now!' onclick='emailCurrentPage()'>Share This Now!</button><p style='font-size: 10px;color: lightslategrey;'> <a onclick='reload()' href='javascript:void(0);'>Click Here to Go Home</a></p></center>";
   });
 console.log("count is asdasd:  "  + count);
 setTimeout(openit, 1000)
