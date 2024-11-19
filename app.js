@@ -206,7 +206,6 @@ console.log(date);
   //tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
   tipMessage.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'><br><a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a></p></center>";
   footer.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
-
 }
 
 async function loadRemovedTips() {
