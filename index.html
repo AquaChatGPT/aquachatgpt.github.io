@@ -17,15 +17,15 @@
    <input type="hidden"  id="id" name="id"> 
     <input type="hidden"  id="ip" name="ip"> 
     <a href="/"><img id="Aqua-Aerobic Systems, Inc logo" src="aqua.png" width="160px" title="Click to go home/refresh home page!"></a><br>
-    <center><div style="font-size: 18pt;color:#00529c;"><b>AquaAI</b></div><div style="font-size: 9pt;color:rgb(106, 106, 129);">AI working group findings</div></center>
+    <center><div style="font-size: 18pt;color:#00529c;"><b>AquaAI</b></div><div style="font-size: 9pt;color:rgb(106, 106, 129);">Suggested POE prompts or tips/tricks</div></center>
     <center><p style='font-size: 9pt;color:blue;'><a href="/help/Introduction.html"  title="Click to get help!">How Do I Use This?</a> | <a href="ChatGPT.pdf" target="_blank">Quick Reference Guide</a></p></center>
     <div id="news">
-     <center><details name="chatgpt" id="removeit"><summary style='font-size: 9pt;color:blue;'>CLICK HERE TO ADD NEW POST!</summary><article><form id="tipForm">
+     <center><details name="chatgpt" id="removeit"><summary style='font-size: 9pt;color:blue;'>CLICK HERE TO ADD PROMPT OR TIP/TRICK</summary><article><form id="tipForm">
       <input type="text" id="employeeName" placeholder="Please Enter Your Full Name" required="" style="font-size: 12px;">
-      <textarea id="tipContent" placeholder="Post one of the following:&#10;1) Results you were expecting&#10;2) ChatGPT Tip/Trick" required="" style="height: 100px; font-size: 12px;"></textarea>
-       <input type="text" id="url" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)" style="font-size: 12px;">
-       <textarea id="summary" placeholder="4) Please summarize results **&#10;   a) How accurate were initial results?&#10;      (10%, 50%, 90%,etc.)&#10;   b) Were you able to improve accuracy?&#10;      If so, how?&#10;   c) How much time would this save you?" style="height: 140px; font-size: 12px;"></textarea>
-       <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>
+      <textarea id="tipContent" placeholder="Post one of the following:&#10;1) Suggested Prompt&#10;2) Tip/Trick" required="" style="height: 100px; font-size: 12px;"></textarea>
+       <input type="text" id="url" placeholder="3) Share Link (i.e., POE Conversation, Website)" style="font-size: 12px;">
+       <textarea id="summary" placeholder="4) Please summarize &#10;   a) Suggested Prompt&#10;   b) Tip/Trick&#10;   c) Other" style="height: 140px; font-size: 12px;"></textarea>
+      <!-- <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>-->
        <button type="submit">Submit</button><br>
     </form></article></details></center>
   </div>
@@ -36,10 +36,10 @@
         <label style="text-align: left;"><b>Post:</b></label>
         <textarea id="tipContent2" placeholder="Post one of the following:&#10;1) Results you were expecting&#10;2) ChatGPT Tip/Trick" required="" style="height: 100px;font-size: 12px;"></textarea>
         <label style="text-align: left;"><b>Link:</b></label>
-        <input type="text" id="url2" placeholder="3) Share Link (i.e., ChatGPT Conversation, Website)" style="font-size: 12px;">
+        <input type="text" id="url2" placeholder="3) Share Link (i.e., POE Conversation, Website)" style="font-size: 12px;">
         <label style="text-align: left;"><b>Summary:</b></label>
-        <textarea id="summary2" placeholder="Please summarize results&#10;   a) How accurate were initial results?&#10;      (10%, 50%, 90%,etc.)&#10;   b) Were you able to improve accuracy?&#10;      If so, how?&#10;   c) How much time would this save you?" style="height: 140px;font-size: 12px;"></textarea>
-        <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary2()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>
+        <textarea id="summary2" placeholder="4) Please summarize &#10;   a) Suggested Prompt&#10;   b) Tip/Trick&#10;   c) Other" style="height: 140px;font-size: 12px;"></textarea>
+        <!-- <center><p style='font-size: 11px;color: lightslategrey;'> <a onclick='copysummary2()' href='javascript:void(0);'>** Paste Summary Questions Into Above Text Area</a></p></center>-->
         <button type="submit" id="viewbutton">Update</button><br>
       </form></article></details></center>      
     </div>
