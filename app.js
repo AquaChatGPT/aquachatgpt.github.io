@@ -81,6 +81,7 @@ const options = {
 
 //
 var subject = "";
+var bodygreeting = "";
 // Form submission
 const tipForm = document.getElementById("tipForm");
 tipForm.addEventListener("submit", async (e) => {
@@ -315,7 +316,7 @@ console.log("count is asdasd:  "  + count);
      strrep= ptitle.replace(/"/g,'%22');
      strrep= ptitle.replace(/&/g,'%26');
      
-     var mailtourl = "mailto:?subject=AI Team: " + subject + "&body=I thought you might find this information interesting:%0D%0A"+encodeURIComponent(location.href);
+     var mailtourl = "mailto:?subject=AquaAI Team: " + subject + "&body=Greetings,%0D%0AI thought you might find this interesting.%0D%0A"+bodygreeting+"%0D%0A"+encodeURIComponent(location.href)+"%0D%0A%0D%0AAquaAI Team App:%0D%0Ahttps://aquaai.app/";
      location.href = mailtourl;
      return false
    
@@ -339,7 +340,8 @@ tipElement.classList.add("tip");
             const date = formatDate(doc.data().timestamp);
             count = querySnapshot.size;
             var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
-            subject = doc.data().content.substr(0,30) + "... By: " + doc.data().name;
+            subject = doc.data().content.substr(0,35) + "... By: " + doc.data().name;
+            bodygreeting = "%0D%0APOST:%0D%0A" + doc.data().content + "%0D%0A%0D%0ABY:%0D%0A" + doc.data().name + "%0D%0A%0D%0ALINK TO POST:";
             var view = "/?id=" + doc.data().key + "&view=yes";
             var edit = "/?id=" + doc.data().key;
             removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
