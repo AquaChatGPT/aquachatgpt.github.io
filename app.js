@@ -108,6 +108,8 @@ remove: 'No'
 .then(function(doc) {  
     tipForm.reset();
     loadTips();  // Reload the tips after submission
+    window.history.replaceState(null, '', window.location.pathname);
+    location.reload();
 }).catch(function(error) {
    console.error("Error adding tip: ", error);
 });
