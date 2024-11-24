@@ -155,6 +155,11 @@ document.getElementById("summary2").value = x + "\n\n" + summarycopy
 const tipsContainer = document.getElementById("tipsContainer");
 const tipMessage = document.getElementById("message");
 const footer = document.getElementById("footer");
+
+//var csvarray = [{Prompt: 0,CreatedBy: 0,Summary: 0,Link: 0,Date: 0 ,Key: 0}];
+//var csvarray = [{Prompt:0,Summary:0,Link:0,CreatedBy:0,Date:0,Key:0}];
+var csvarray = [];
+
 async function loadTips() {
     document.getElementById('edits').style.display = 'none';
     document.getElementById('removeit').style.display = 'block';
@@ -172,7 +177,10 @@ console.log(date);
     tipElement.classList.add("tip");
     console.log(doc.data().url);
      var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
-
+     //csvarray.push(doc.data().content,doc.data().key,doc.data().name,doc.data().summary,doc.data().timestamp,doc.data().url)
+     //formatDate
+     csvarray.push({Prompt: doc.data().content,Summary:  doc.data().summary,Link: doc.data().url,CreatedBy: doc.data().name,Date: formatDate(doc.data().timestamp) ,Key: "https://aquaai.app/?id=" + doc.data().key +"&view=yes"});
+     //({content: doc.data().content,key: doc.data().key,fullname: doc.data().name,summary: doc.data().summary,datetime: doc.data().timestamp,url: doc.data().url});
      var view = "/?id=" + doc.data().key + "&view=yes";
      var edit = "/?id=" + doc.data().key
      //replaceSpaces
@@ -209,7 +217,32 @@ console.log(date);
   //tipMessage.innerHTML = "<hr><br><center><p style='font-size: 10px;color: lightslategrey;'> <a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a><br><br><br>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
   tipMessage.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'><br><a onclick='loadRemovedTips()' href='javascript:void(0);'>Click Here to Restore Posts</a></p></center>";
   footer.innerHTML = "<hr><center><p style='font-size: 10px;color: lightslategrey;'>Questions/Comments?<br>Please Contact <a href='mailto:ckonkol@aqua-aerobic.com?subject=Question or Comment ~ AquaAI Website'>Chuck Konkol</a>, ext 4574</p></center>";
+  console.log(csvarray); 
+  // Create CSV
+  //csvarray.splice(1);
+   var csvData = arrayToCSV(csvarray);
+   console.log(csvData);
+const blob = new Blob([csvData], { type: "text/csv" });
+const url = URL.createObjectURL(blob,"saasdas");
+// const a = document.createElement("a");
+// a.setAttribute("href", url);
+// a.setAttribute("download", "data.csv");
+// //a.click();
+var buttons = document.getElementById("container");
+const newDiv = document.createElement("div");  
+var a = document.createElement('a');
+a.setAttribute("download", "AquaAIPrompts.csv");
+var linkText = document.createTextNode("download csv file");
+a.appendChild(linkText);
+a.title = "AquaAIPrompts.csv";
+a.href = url;
+newDiv.appendChild(a);
+buttons.appendChild(newDiv);
+newDiv.style.textAlignLast = 'center';
+newDiv.style.fontSize = 'x-small';
 }
+
+
 
 async function loadRemovedTips() {
     document.getElementById('removeit').style.display = 'none';
@@ -519,3 +552,18 @@ var updatedatabase = function(data){
     });
 }
 
+function arrayToCSV(data) {
+    // Extract the headers (keys from the first object in the array)
+    const headers = Object.keys(data[0]);
+    
+    // Join the headers into a CSV string
+    const csvRows = [
+      headers.join(","), // Header row
+      ...data.map(row => 
+        headers.map(fieldName => JSON.stringify(row[fieldName] || "")).join(",") // Data rows
+      )
+    ];
+  
+    // Combine all rows into a single string
+    return csvRows.join("\n");
+  }
