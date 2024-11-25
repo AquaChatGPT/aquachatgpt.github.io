@@ -230,7 +230,9 @@ const url = URL.createObjectURL(blob,"saasdas");
 // //a.click();
 var buttons = document.getElementById("container");
 const newDiv = document.createElement("div");  
+newDiv.setAttribute("id", "csvdiv");
 var a = document.createElement('a');
+a.setAttribute("id", "csvdivlink");
 a.setAttribute("download", "AquaAIPrompts.csv");
 var linkText = document.createTextNode("download as csv file");
 a.appendChild(linkText);
@@ -245,6 +247,8 @@ newDiv.style.fontSize = 'x-small';
 
 
 async function loadRemovedTips() {
+    var element = document.getElementById("csvdivlink");
+element.parentNode.removeChild(element);
     document.getElementById('removeit').style.display = 'none';
     var count;
     tipsContainer.innerHTML = "";
@@ -292,6 +296,7 @@ async function loadRemovedTips() {
     document.getElementById('tipsContainer').style.display = 'none';
     document.getElementById('edits').style.display = 'none';
     document.getElementById('message').style.display = 'none';
+   
     //document.getElementById('id').style.display = 'contents';
 }
 
@@ -358,6 +363,7 @@ console.log("count is asdasd:  "  + count);
 }
 
  var loadView = function(data){
+
     unclear();
     var count;
     var db = firebase.firestore();
@@ -412,10 +418,13 @@ setTimeout(openit, 1000)
  function openit() {
     document.getElementById("chats").open = true;
     document.getElementById('edits').style.display = 'none';
+    document.getElementById('csvdiv').style.display = 'none';
+  
   }
 
   function openedit(){
     document.getElementById('tipsContainer').style.display = 'none';
+    document.getElementById('csvdiv').style.display = 'none';
     document.getElementById('edits').style.display = 'block';
     document.getElementById('message').style.display = 'block';
   }
