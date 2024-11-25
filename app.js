@@ -232,7 +232,7 @@ var buttons = document.getElementById("container");
 const newDiv = document.createElement("div");  
 var a = document.createElement('a');
 a.setAttribute("download", "AquaAIPrompts.csv");
-var linkText = document.createTextNode("download csv file");
+var linkText = document.createTextNode("download as csv file");
 a.appendChild(linkText);
 a.title = "AquaAIPrompts.csv";
 a.href = url;
