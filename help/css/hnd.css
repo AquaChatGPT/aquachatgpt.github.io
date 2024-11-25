@@ -103,43 +103,49 @@ span.rvts18
 {
  font-weight: bold;
 }
-span.rvts19
+a.rvts19, span.rvts19
 {
- font-style: italic;
+ color: #000000;
+ background-color: #ffffff;
+ text-decoration: underline;
 }
 span.rvts20
 {
- color: #7f7f7f;
+ font-style: italic;
 }
 span.rvts21
 {
- font-style: italic;
  color: #7f7f7f;
 }
 span.rvts22
 {
  font-style: italic;
- font-weight: bold;
+ color: #7f7f7f;
 }
 span.rvts23
 {
+ font-style: italic;
  font-weight: bold;
- text-decoration: underline;
 }
 span.rvts24
 {
  font-weight: bold;
- color: #000000;
+ text-decoration: underline;
 }
 span.rvts25
 {
- color: #ff0000;
+ font-weight: bold;
+ color: #000000;
 }
 span.rvts26
 {
  color: #ff0000;
 }
 span.rvts27
+{
+ color: #ff0000;
+}
+span.rvts28
 {
  font-weight: bold;
  color: #ff0000;
