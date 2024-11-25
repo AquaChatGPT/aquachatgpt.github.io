@@ -83,69 +83,62 @@ a.rvts14, span.rvts14 /* Font Style */
 }
 a.rvts15, span.rvts15
 {
- font-weight: bold;
- color: #000000;
- background-color: #ffffff;
+ color: #0000ff;
  text-decoration: underline;
 }
 span.rvts16
 {
+ font-weight: bold;
+}
+span.rvts17
+{
  font-style: italic;
  color: #000000;
  background-color: #ffffff;
 }
-a.rvts17, span.rvts17
-{
- color: #0000ff;
- text-decoration: underline;
-}
-span.rvts18
-{
- font-weight: bold;
-}
-a.rvts19, span.rvts19
+a.rvts18, span.rvts18
 {
  color: #000000;
  background-color: #ffffff;
  text-decoration: underline;
+}
+span.rvts19
+{
+ font-style: italic;
 }
 span.rvts20
 {
- font-style: italic;
+ color: #7f7f7f;
 }
 span.rvts21
 {
+ font-style: italic;
  color: #7f7f7f;
 }
 span.rvts22
 {
  font-style: italic;
- color: #7f7f7f;
-}
-span.rvts23
-{
- font-style: italic;
  font-weight: bold;
 }
-span.rvts24
+span.rvts23
 {
  font-weight: bold;
  text-decoration: underline;
 }
-span.rvts25
+span.rvts24
 {
  font-weight: bold;
  color: #000000;
+}
+span.rvts25
+{
+ color: #ff0000;
 }
 span.rvts26
 {
  color: #ff0000;
 }
 span.rvts27
-{
- color: #ff0000;
-}
-span.rvts28
 {
  font-weight: bold;
  color: #ff0000;
