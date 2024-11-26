@@ -102,43 +102,57 @@ a.rvts18, span.rvts18
  background-color: #ffffff;
  text-decoration: underline;
 }
-span.rvts19
+a.rvts19, span.rvts19
 {
  font-style: italic;
+ color: #000000;
+ background-color: #ffffff;
+ text-decoration: underline;
 }
 span.rvts20
 {
- color: #7f7f7f;
+ font-style: italic;
+ font-weight: bold;
+ color: #000000;
+ background-color: #ffffff;
 }
 span.rvts21
 {
  font-style: italic;
- color: #7f7f7f;
 }
 span.rvts22
+{
+ color: #7f7f7f;
+}
+span.rvts23
+{
+ font-style: italic;
+ color: #7f7f7f;
+}
+span.rvts24
 {
  font-style: italic;
  font-weight: bold;
 }
-span.rvts23
+span.rvts25
 {
  font-weight: bold;
  text-decoration: underline;
 }
-span.rvts24
+span.rvts26
 {
  font-weight: bold;
  color: #000000;
 }
-span.rvts25
-{
- color: #ff0000;
-}
-span.rvts26
-{
- color: #ff0000;
-}
 span.rvts27
+{
+ color: #ff0000;
+}
+span.rvts28
+{
+ color: #ff0000;
+}
+span.rvts29
 {
  font-weight: bold;
  color: #ff0000;
