@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <title>PDF Token Splitter</title>
+</head>
+<body>
+    <h1>PDF Token Splitter</h1>
+    <label for="split">Splits PDF every:</label>
+<input type="number" id="split" name="tentacles" min="10" max="100" value="10000" /><br><br>
+    <input type="file" id="pdfUpload" accept="application/pdf" />
+    <button id="processPdf">Process PDF</button>
+    <div id="output"></div>
+    <div id="tokens"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
