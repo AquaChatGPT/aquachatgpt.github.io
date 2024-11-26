@@ -3,15 +3,18 @@ const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
 
+
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
 console.log("TOKEN LIMIT" + TOKEN_LIMIT);
 var finaltokens = 0;
 processPdf.addEventListener("click", async () => {
+    
     if (!pdfUpload.files.length) {
         alert("Please upload a PDF file.");
         return;
     }
     TOKEN_LIMIT = document.getElementById("split").value;
+    finaltokens = 0;
     console.log("updated TOKEN limit" + TOKEN_LIMIT);
     const file = pdfUpload.files[0];
     const arrayBuffer = await file.arrayBuffer();
@@ -30,7 +33,7 @@ processPdf.addEventListener("click", async () => {
             const page = await pdf.getPage(i);
             const textContent = await page.getTextContent();
             const pageText = textContent.items.map((item) => item.str).join(" ");
-
+         
             const tokens = countTokens(pageText);
             console.log("tokens: " + tokens);
             console.log("currentTokens + tokens: " + (currentTokens + tokens));
@@ -70,7 +73,10 @@ processPdf.addEventListener("click", async () => {
 });
 
 function countTokens(text) {
-    return text.split(/\s+/).length; // Basic token count approximation
+    //.split( /(?<=^(?:.{3})+)(?!$)/ )
+    //old
+    //return text.split(/\s+/).length; // Basic token count approximation
+    return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
 }
 
 async function createPdfFromPages(pages) {
