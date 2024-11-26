@@ -1,8 +1,11 @@
+//PDF Splitter & Token Counter
+//Created by: Chuck Konkol 11/26/2024
+//Aqua-Aerobic Systems.
+
 const pdfUpload = document.getElementById("pdfUpload");
 const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
-
 
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
 console.log("TOKEN LIMIT" + TOKEN_LIMIT);
@@ -73,9 +76,6 @@ processPdf.addEventListener("click", async () => {
 });
 
 function countTokens(text) {
-    //.split( /(?<=^(?:.{3})+)(?!$)/ )
-    //old
-    //return text.split(/\s+/).length; // Basic token count approximation
     return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
 }
 
@@ -126,15 +126,6 @@ async function createPdfFromPages(pages) {
     return new Blob([pdfBytes], { type: "application/pdf" });
 }
 
-/**
- * Splits a large block of text into lines that fit within a given width.
- *
- * @param {string} text - The text to split.
- * @param {PDFLib.PDFFont} font - The font used for measuring text width.
- * @param {number} fontSize - The font size used.
- * @param {number} maxWidth - The maximum width of each line.
- * @returns {string[]} - An array of lines of text.
- */
 function splitTextIntoLines(text, font, fontSize, maxWidth) {
     const words = text.split(/\s+/); // Split text into words
     let lines = [];
