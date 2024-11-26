@@ -68,7 +68,8 @@ processPdf.addEventListener("click", async () => {
         output.innerHTML = "<br>";
         output.appendChild(downloadLink);
     } catch (err) {
-        output.innerHTML = `Error: ${err.message}`;
+        //console.log(`${error.message} (line ${error.lineNumber})`);
+        output.innerHTML = `Error: ${err.message} (line ${error.lineNumber})` ;
     }
 });
 
