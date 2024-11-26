@@ -77,7 +77,12 @@ processPdf.addEventListener("click", async () => {
 });
 
 function countTokens(text) {
-    return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
+    try{
+        return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
+    }catch (err){
+        output.innerHTML = `Errors: ${err.message} (line ${err.lineNumber})` ;
+    }
+   
 }
 
 async function createPdfFromPages(pages) {
@@ -85,7 +90,9 @@ async function createPdfFromPages(pages) {
     const pdfDoc = await PDFLib.PDFDocument.create();
 
     // Embed a font (Helvetica in this case)
+    //PDFFont.getCharacterSet()
     const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+   // const font = await pdfDoc.embedFont(PDFFont.getCharacterSet());
 
     // Define font size and page margins
     const fontSize = 12;
@@ -128,28 +135,40 @@ async function createPdfFromPages(pages) {
 }
 
 function splitTextIntoLines(text, font, fontSize, maxWidth) {
-    const words = text.split(/\s+/); // Split text into words
     let lines = [];
-    let currentLine = "";
-
-    for (const word of words) {
-        const testLine = currentLine ? `${currentLine} ${word}` : word;
-        const testWidth = font.widthOfTextAtSize(testLine, fontSize);
-
-        if (testWidth > maxWidth) {
-            // Current line is full; push it to lines and start a new line
-            if (currentLine) lines.push(currentLine);
-            currentLine = word;
-        } else {
-            // Add the word to the current line
-            currentLine = testLine;
+    var words;
+    var testLine;
+    var testWidth;
+    try{
+        text = text.replace(/[^ -~]+/g, "");
+        words = text.split(/\s+/); // Split text into words
+        let currentLine = "";
+    
+        for (const word of words) {
+            testLine = currentLine ? `${currentLine} ${word}` : word;
+            testWidth = font.widthOfTextAtSize(testLine, fontSize);
+         
+            if (testWidth > maxWidth) {
+                // Current line is full; push it to lines and start a new line
+                if (currentLine) lines.push(currentLine);
+                currentLine = word;
+            } else {
+                // Add the word to the current line
+                currentLine = testLine;
+            }
         }
+    
+        // Add the last line if it exists
+        if (currentLine) lines.push(currentLine);
+        return lines;
+    }catch (err){
+        console.log("testWidth:" + testWidth);
+        console.log("Errorwords:" + words);
+        output.innerHTML = `Errorsplit: ${err.message} (line ${err.lineNumber})` ;
+        console.log( `Errorsplit: ${err.message} (line ${err.lineNumber})`);
+        return lines;
     }
 
-    // Add the last line if it exists
-    if (currentLine) lines.push(currentLine);
-
-    return lines;
 }
 
 
