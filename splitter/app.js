@@ -1,7 +1,7 @@
 //PDF Splitter & Token Counter
 //Created by: Chuck Konkol 11/26/2024
 //Aqua-Aerobic Systems.
-
+var downloadfilename = "";
 const pdfUpload = document.getElementById("pdfUpload");
 const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
@@ -22,6 +22,11 @@ processPdf.addEventListener("click", async () => {
     finaltokens = 0;
     console.log("updated TOKEN limit" + TOKEN_LIMIT);
     const file = pdfUpload.files[0];
+    const name = file.name;
+    const lastDot = name.lastIndexOf('.');
+    const fileName = name.substring(0, lastDot);
+    console.log("file:" + fileName)
+    downloadfilename = fileName;
     const arrayBuffer = await file.arrayBuffer();
 
     try {
@@ -45,7 +50,7 @@ processPdf.addEventListener("click", async () => {
             if (currentTokens + tokens > TOKEN_LIMIT) {
                 // Save current split to ZIP
                 const splitPdf = await createPdfFromPages(currentSplit);
-                zip.file(`split_${part}.pdf`, splitPdf);
+                zip.file(`${fileName}_${part}.pdf`, splitPdf);
                 part++;
                 currentTokens = 0;
                 currentSplit = [];
@@ -59,7 +64,7 @@ processPdf.addEventListener("click", async () => {
         // Save last split
         if (currentSplit.length > 0) {
             const splitPdf = await createPdfFromPages(currentSplit);
-            zip.file(`split_${part}.pdf`, splitPdf);
+            zip.file(`${fileName}_${part}.pdf`, splitPdf);
         }
 
         const zipBlob = await zip.generateAsync({ type: "blob" });
@@ -67,8 +72,8 @@ processPdf.addEventListener("click", async () => {
 
         const downloadLink = document.createElement("a");
         downloadLink.href = url;
-        downloadLink.download = "pdf_splits.zip";
-        downloadLink.textContent = "Download PDF Splits";
+        downloadLink.download = downloadfilename + "_pdf_splits.zip";
+        downloadLink.textContent = "Download PDF Split Zip File";
         output.innerHTML = "<br>";
         output.appendChild(downloadLink);
     } catch (err) {
