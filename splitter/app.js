@@ -1,22 +1,29 @@
+//PDF Splitter & Token Counter
+//Created by: Chuck Konkol 11/26/2024
+//Aqua-Aerobic Systems.
+
 const pdfUpload = document.getElementById("pdfUpload");
 const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
-
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
 console.log("TOKEN LIMIT" + TOKEN_LIMIT);
 var finaltokens = 0;
 processPdf.addEventListener("click", async () => {
     if (!pdfUpload.files.length) {
-        alert("Please upload a PDF file.");
+        alert("Please select upload a PDF file.");
         return;
     }
+    tokens.innerHTML = "";
+    output.innerHTML = "<br><span class='blink_text'><b>Processing PDF...Please Wait!</b></span>";
+    await sleep(3000)
     TOKEN_LIMIT = document.getElementById("split").value;
+    finaltokens = 0;
     console.log("updated TOKEN limit" + TOKEN_LIMIT);
     const file = pdfUpload.files[0];
     const arrayBuffer = await file.arrayBuffer();
 
-    output.innerHTML = "Processing PDF...";
     try {
         const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
         const totalPages = pdf.numPages;
@@ -30,7 +37,7 @@ processPdf.addEventListener("click", async () => {
             const page = await pdf.getPage(i);
             const textContent = await page.getTextContent();
             const pageText = textContent.items.map((item) => item.str).join(" ");
-
+         
             const tokens = countTokens(pageText);
             console.log("tokens: " + tokens);
             console.log("currentTokens + tokens: " + (currentTokens + tokens));
@@ -65,12 +72,18 @@ processPdf.addEventListener("click", async () => {
         output.innerHTML = "<br>";
         output.appendChild(downloadLink);
     } catch (err) {
-        output.innerHTML = `Error: ${err.message}`;
+        //console.log(`${error.message} (line ${error.lineNumber})`);
+        output.innerHTML = `Error: ${err.message} (line ${err.lineNumber})` ;
     }
 });
 
 function countTokens(text) {
-    return text.split(/\s+/).length; // Basic token count approximation
+    try{
+        return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
+    }catch (err){
+        output.innerHTML = `Errors: ${err.message} (line ${err.lineNumber})` ;
+    }
+   
 }
 
 async function createPdfFromPages(pages) {
@@ -78,7 +91,9 @@ async function createPdfFromPages(pages) {
     const pdfDoc = await PDFLib.PDFDocument.create();
 
     // Embed a font (Helvetica in this case)
+    //PDFFont.getCharacterSet()
     const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+   // const font = await pdfDoc.embedFont(PDFFont.getCharacterSet());
 
     // Define font size and page margins
     const fontSize = 12;
@@ -120,38 +135,41 @@ async function createPdfFromPages(pages) {
     return new Blob([pdfBytes], { type: "application/pdf" });
 }
 
-/**
- * Splits a large block of text into lines that fit within a given width.
- *
- * @param {string} text - The text to split.
- * @param {PDFLib.PDFFont} font - The font used for measuring text width.
- * @param {number} fontSize - The font size used.
- * @param {number} maxWidth - The maximum width of each line.
- * @returns {string[]} - An array of lines of text.
- */
 function splitTextIntoLines(text, font, fontSize, maxWidth) {
-    const words = text.split(/\s+/); // Split text into words
     let lines = [];
-    let currentLine = "";
-
-    for (const word of words) {
-        const testLine = currentLine ? `${currentLine} ${word}` : word;
-        const testWidth = font.widthOfTextAtSize(testLine, fontSize);
-
-        if (testWidth > maxWidth) {
-            // Current line is full; push it to lines and start a new line
-            if (currentLine) lines.push(currentLine);
-            currentLine = word;
-        } else {
-            // Add the word to the current line
-            currentLine = testLine;
+    var words;
+    var testLine;
+    var testWidth;
+    try{
+        text = text.replace(/[^ -~]+/g, "");
+        words = text.split(/\s+/); // Split text into words
+        let currentLine = "";
+    
+        for (const word of words) {
+            testLine = currentLine ? `${currentLine} ${word}` : word;
+            testWidth = font.widthOfTextAtSize(testLine, fontSize);
+         
+            if (testWidth > maxWidth) {
+                // Current line is full; push it to lines and start a new line
+                if (currentLine) lines.push(currentLine);
+                currentLine = word;
+            } else {
+                // Add the word to the current line
+                currentLine = testLine;
+            }
         }
+    
+        // Add the last line if it exists
+        if (currentLine) lines.push(currentLine);
+        return lines;
+    }catch (err){
+        console.log("testWidth:" + testWidth);
+        console.log("Errorwords:" + words);
+        output.innerHTML = `Errorsplit: ${err.message} (line ${err.lineNumber})` ;
+        console.log( `Errorsplit: ${err.message} (line ${err.lineNumber})`);
+        return lines;
     }
 
-    // Add the last line if it exists
-    if (currentLine) lines.push(currentLine);
-
-    return lines;
 }
 
 
