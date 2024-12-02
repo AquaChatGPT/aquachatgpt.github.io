@@ -6,23 +6,24 @@ const pdfUpload = document.getElementById("pdfUpload");
 const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
-
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
 console.log("TOKEN LIMIT" + TOKEN_LIMIT);
 var finaltokens = 0;
 processPdf.addEventListener("click", async () => {
-    
     if (!pdfUpload.files.length) {
-        alert("Please upload a PDF file.");
+        alert("Please select upload a PDF file.");
         return;
     }
+    tokens.innerHTML = "";
+    output.innerHTML = "<br><span class='blink_text'><b>Processing PDF...Please Wait!</b></span>";
+    await sleep(3000)
     TOKEN_LIMIT = document.getElementById("split").value;
     finaltokens = 0;
     console.log("updated TOKEN limit" + TOKEN_LIMIT);
     const file = pdfUpload.files[0];
     const arrayBuffer = await file.arrayBuffer();
 
-    output.innerHTML = "Processing PDF...";
     try {
         const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
         const totalPages = pdf.numPages;

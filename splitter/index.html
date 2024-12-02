@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <title>PDF Token Counter & Splitter</title>
 </head>
 <body>
-    <h1>PDF Token Counter & Splitter</h1>
+    <h1>PDF Token Counter, File Reducer & Splitter</h1>
+    <p><b>What does this app do?</b>
+        <ul>
+            <li>Allows upload of any size PDF file</li>
+            <li>Removes all images and converts each page to text only</li>
+            <li>Reduces file size up to 90%</li>
+            <li>Counts tokens used</li>
+            <li>Splits PDF every 10,000 tokens (This can be modified by user)</li>
+            <li>Shows final token count</li>
+            <li>Generates .zip file of split pdf(s)</li>
+            <li>Creates download link for .zip file</li>
+        </ul></p>
+        <p><b>How do I use this app?</b>
+            <ol>
+                <li>Click <b>Choose File</b> button below, browse and select desired PDF.</li>
+                <li>Click <b>Process PDF</b> button and wait while until process completes</li>
+                <li>Once completed, view Total token count</li>
+                <li>Finally, click <b>Download PDF Splits</b> zip file!</li>
+            </ol></p>
+    
     <label for="split">Splits PDF every</label>
 <input type="number" id="split" name="tentacles" min="10" max="1000000" value="10000" /> <label for="split">tokens! (This can be changed)</label><br><br>
-<label for="pdfUpload">1) Choose PDF</label>  
-<input type="file" id="pdfUpload" accept="application/pdf" />
-    <button id="processPdf">2) Process PDF</button>
+<label for="pdfUpload">1) Select & Upload PDF File</label>  
+<input type="file" id="pdfUpload" accept="application/pdf" /><br><br>
+<label for="pdfUpload">2) Click</label>  
+    <button id="processPdf">Process PDF</button>
     <div id="output"></div>
     <div id="tokens"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
