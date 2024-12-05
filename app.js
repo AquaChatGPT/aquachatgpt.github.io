@@ -205,9 +205,9 @@ console.log(date);
      console.log("Share " + share);
     if ((doc.data().url == null) || (doc.data().url == ""))
     {
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,55) + "...<br>By: " + doc.data().name  + " </summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +  "<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }else{
- tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "'  title='Click to view link' target='_blank'>Click to view POE conversation or shared website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
+ tipElement.innerHTML = "<details name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,55) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "'  title='Click to view link' target='_blank'>Click to view POE conversation or shared website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "   |    " + view  +"<br><br>"  + removewebsiteYes + "</p></center></article></details>";
   }
        tipsContainer.appendChild(tipElement);
   });
@@ -278,9 +278,9 @@ element.parentNode.removeChild(element);
      }
       if ((doc.data().url == null) || (doc.data().url == ""))
       {
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name  + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,55) + " ...<br>By: " + doc.data().name  + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + date + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }else{
-   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p><br><b>LINK:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view POE conversation or other website!</a></p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
+   tipElement.innerHTML = "<details name='chatgpt'><summary style='font-size: 10pt;color: red;'>" + doc.data().content.substr(0,55) + " ...<br>By: " + doc.data().name + "</summary><article><b>POST:</b><p>" + doc.data().content + "</p><br><b>LINK:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' target='_blank'>   Click to view POE conversation or other website!</a></p>" + review  + "<center><p style='font-size: 10px;color: grey;'>created by: " + doc.data().name + "," + "<br><br>" + removewebsiteNo + "</p></center></article></details>";
     }
          tipsContainer.appendChild(tipElement);
     });
@@ -382,7 +382,7 @@ tipElement.classList.add("tip");
             const date = formatDate(doc.data().timestamp);
             count = querySnapshot.size;
             var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
-            subject = doc.data().content.substr(0,35) + "... By: " + doc.data().name;
+            subject = doc.data().content.substr(0,55) + "... By: " + doc.data().name;
             bodygreeting = "%0D%0APOST:%0D%0A" + doc.data().content + "%0D%0A%0D%0ABY:%0D%0A" + doc.data().name + "%0D%0A%0D%0ALINK TO POST:";
             var view = "/?id=" + doc.data().key + "&view=yes";
             var edit = "/?id=" + doc.data().key;
@@ -398,9 +398,9 @@ tipElement.classList.add("tip");
      }
         if ((doc.data().url == null) || (doc.data().url == ""))
            {
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,55) + "...<br>By: " + doc.data().name  + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit +  "<br><br></p></center></article></details>";
          }else{
-        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,35) + " ...<br>By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' title='Click to view link'  target='_blank'>Click to view POE conversation or other website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
+        tipElement.innerHTML = "<details id='chats' name='chatgpt'><summary class='hand' style='font-size: 9pt;'>" + doc.data().content.substr(0,55) + " ...<br>By: " + doc.data().name + "</summary><article><b>Post:</b><p>" + doc.data().content + "</p><br><b>Link:</b><p style='font-size: 8pt;'><a href='" + doc.data().url + "' title='Click to view link'  target='_blank'>Click to view POE conversation or other website!</a></p>" + review + "<hr><center><p style='font-size: 10px;'>created by: " + doc.data().name + "<br>" + date + "<br><br>" + edit + "<br><br></p></center></article></details>";
          }
                tipsContainer.appendChild(tipElement);
           });
