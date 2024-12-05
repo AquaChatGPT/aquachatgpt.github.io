@@ -161,6 +161,7 @@ const footer = document.getElementById("footer");
 var csvarray = [];
 
 async function loadTips() {
+    csvarray = [];
     document.getElementById('edits').style.display = 'none';
     document.getElementById('removeit').style.display = 'block';
     var count;

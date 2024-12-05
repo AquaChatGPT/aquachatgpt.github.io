@@ -82,7 +82,9 @@ processPdf.addEventListener("click", async () => {
     }
 });
 
+
 function countTokens(text) {
+
     try{
         return text.split( /(?<=^(?:.{4})+)(?!$)/ ).length; // Basic token count approximation
     }catch (err){
