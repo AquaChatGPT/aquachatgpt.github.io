@@ -3,6 +3,7 @@
 //Aqua-Aerobic Systems.
 var downloadfilename = "";
 const pdfUpload = document.getElementById("pdfUpload");
+const pdfUploadtxt = document.getElementById("pdfUploadtxt");
 const processPdf = document.getElementById("processPdf");
 const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
@@ -10,6 +11,16 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
 console.log("TOKEN LIMIT" + TOKEN_LIMIT);
 var finaltokens = 0;
+
+
+pdfUpload.addEventListener('change', function(e) {
+    if (e.target.files[0]) {
+        tokens.innerHTML = "";
+        output.innerHTML = "";
+        pdfUploadtxt.innerHTML = '<ul><li>You have selected file: <b>' + e.target.files[0].name + "</b></li><li>Next, click button: <b>Process PDF</b></li></ul>";
+    }
+  });
+
 processPdf.addEventListener("click", async () => {
     if (!pdfUpload.files.length) {
         alert("Please select upload a PDF file.");
@@ -60,7 +71,7 @@ processPdf.addEventListener("click", async () => {
             currentTokens += tokens;
         }
         console.log("finaltoens: " + (finaltokens));
-        tokens.innerHTML = "<br>Total tokens: " + (finaltokens);
+        tokens.innerHTML = "<ul><li>Final token count: <b>" + (finaltokens) + "</b></li></ul>";
         // Save last split
         if (currentSplit.length > 0) {
             const splitPdf = await createPdfFromPages(currentSplit);
@@ -74,8 +85,10 @@ processPdf.addEventListener("click", async () => {
         downloadLink.href = url;
         downloadLink.download = downloadfilename + "_pdf_splits.zip";
         downloadLink.textContent = "Download PDF Split Zip File";
-        output.innerHTML = "<br>";
+        downloadLink.innerHTML = "<ul><li>Download PDF Split Zip File</li></ul>";
+        output.innerHTML = "";
         output.appendChild(downloadLink);
+       // tokens.innerHTML = "<ul><li>Total tokens: <b>" + (finaltokens) + "</b></li></ul>";
     } catch (err) {
         //console.log(`${error.message} (line ${error.lineNumber})`);
         output.innerHTML = `Error: ${err.message} (line ${err.lineNumber})` ;
