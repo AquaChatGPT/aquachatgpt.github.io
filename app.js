@@ -1,12 +1,12 @@
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCNJoIZUAPnXO_L2vQctUIDQROeMzE2Iq0",
-  authDomain: "messageboard-5877c.firebaseapp.com",
-  databaseURL: "https://messageboard-5877c.firebaseio.com",
-  projectId: "messageboard-5877c",
-  storageBucket: "messageboard-5877c.appspot.com",
-  messagingSenderId: "598927182615",
-  appId: "1:598927182615:web:a80846bc7a3d4b33df0552"
+  apiKey: "AIzaSyBIlqF9D5rAAL1mMrPyFE34uSJ705slg-E",
+  authDomain: "aquaai-779a8.firebaseapp.com",
+  databaseURL: "https://aquaai-779a8-default-rtdb.firebaseio.com",
+  projectId: "aquaai-779a8",
+  storageBucket: "aquaai-779a8.firebasestorage.app",
+  messagingSenderId: "606901744816",
+  appId: "1:606901744816:web:370c3a156652ea86283775"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
