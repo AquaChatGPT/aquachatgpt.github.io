@@ -9,7 +9,7 @@ const output = document.getElementById("output");
 const tokens = document.getElementById("tokens");
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 var TOKEN_LIMIT = document.getElementById("split").value; // Max tokens per split
-console.log("TOKEN LIMIT" + TOKEN_LIMIT);
+//console.log("TOKEN LIMIT" + TOKEN_LIMIT);
 var finaltokens = 0;
 
 
