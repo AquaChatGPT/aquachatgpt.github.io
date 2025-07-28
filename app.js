@@ -177,13 +177,13 @@ console.log(date);
    
     tipElement.classList.add("tip");
     console.log(doc.data().url);
-     var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
+     var removewebsiteYes = "index.html?id=" + doc.data().key + "&Remove=Yes";
      //csvarray.push(doc.data().content,doc.data().key,doc.data().name,doc.data().summary,doc.data().timestamp,doc.data().url)
      //formatDate
-     csvarray.push({Prompt: doc.data().content,Summary:  doc.data().summary,Link: doc.data().url,CreatedBy: doc.data().name,Date: formatDate(doc.data().timestamp) ,Key: "https://aquaai.app/?id=" + doc.data().key +"&view=yes"});
+     csvarray.push({Prompt: doc.data().content,Summary:  doc.data().summary,Link: doc.data().url,CreatedBy: doc.data().name,Date: formatDate(doc.data().timestamp) ,Key: "http://www.aqua-aerobic.net/aquaai/index.html?id=" + doc.data().key +"&view=yes"});
      //({content: doc.data().content,key: doc.data().key,fullname: doc.data().name,summary: doc.data().summary,datetime: doc.data().timestamp,url: doc.data().url});
-     var view = "/?id=" + doc.data().key + "&view=yes";
-     var edit = "/?id=" + doc.data().key
+     var view = "index.html?id=" + doc.data().key + "&view=yes";
+     var edit = "index.html?id=" + doc.data().key
      //replaceSpaces
      //<a class="email" title="Email a friend" href="#" onclick="javascript:window.location='mailto:?subject=Interesting information&body=I thought you might find this information interesting: ' + window.location;">Email</a>
      var share = "https://aquachatgpt.github.io" + view;
@@ -267,7 +267,7 @@ element.parentNode.removeChild(element);
       tipElement.classList.add("tip");
       reviewElement.classList.add("review");
       console.log(doc.data().url);
-      var removewebsiteNo = "/?id=" + doc.data().key + "&Remove=No";
+      var removewebsiteNo = "index.html?id=" + doc.data().key + "&Remove=No";
       removewebsiteNo = "<a href='" + removewebsiteNo + "' style='font-size: 10px;color: slateblue;'>Click here to restore this post!</a>"
       var review = doc.data().summary;
      if ((review == null) || (review == ""))
@@ -357,7 +357,7 @@ console.log("count is asdasd:  "  + count);
      strrep= ptitle.replace(/"/g,'%22');
      strrep= ptitle.replace(/&/g,'%26');
      
-     var mailtourl = "mailto:?subject=AquaAI Team: " + subject + "&body=Greetings,%0D%0AI thought you might find this interesting.%0D%0A"+bodygreeting+"%0D%0A"+encodeURIComponent(location.href)+"%0D%0A%0D%0AAquaAI Team App:%0D%0Ahttps://aquaai.app/";
+     var mailtourl = "mailto:?subject=AquaAI Team: " + subject + "&body=Greetings,%0D%0AI thought you might find this interesting.%0D%0A"+bodygreeting+"%0D%0A"+encodeURIComponent(location.href)+"%0D%0A%0D%0AAquaAI Team App:%0D%0Ahttp://www.aqua-aerobic.net/aquaai/index.html";
      location.href = mailtourl;
      return false
    
@@ -381,11 +381,11 @@ tipElement.classList.add("tip");
         querySnapshot.forEach((doc) => {
             const date = formatDate(doc.data().timestamp);
             count = querySnapshot.size;
-            var removewebsiteYes = "/?id=" + doc.data().key + "&Remove=Yes";
+            var removewebsiteYes = "index.html?id=" + doc.data().key + "&Remove=Yes";
             subject = doc.data().content.substr(0,55) + "... By: " + doc.data().name;
             bodygreeting = "%0D%0APOST:%0D%0A" + doc.data().content + "%0D%0A%0D%0ABY:%0D%0A" + doc.data().name + "%0D%0A%0D%0ALINK TO POST:";
-            var view = "/?id=" + doc.data().key + "&view=yes";
-            var edit = "/?id=" + doc.data().key;
+            var view = "index.html?id=" + doc.data().key + "&view=yes";
+            var edit = "index.html?id=" + doc.data().key;
             removewebsiteYes = "<a href='" + removewebsiteYes + "' style='font-size: 10px;color: darkgrey;'>Click here to remove this post! (this can be restored)</a>";
             edit = "<a href='" + edit + "' title='Click to edit finding' style='font-size: 10px;color: slateblue;'>Edit</a>";
             view = "<a href='" + view + "' style='font-size: 10px;color: slateblue;'>View</a>";
