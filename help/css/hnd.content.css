@@ -57,35 +57,65 @@ a.rvts10, span.rvts10
  color: #008000;
  text-decoration: underline;
 }
-span.rvts11 /* Font Style */
+span.rvts11
+{
+ font-size: 8pt;
+ font-family: 'segoe ui';
+}
+span.rvts12
+{
+ font-family: 'segoe ui';
+}
+span.rvts13
+{
+ font-size: 14pt;
+ font-family: 'segoe ui';
+ font-weight: bold;
+ color: #3f529c;
+}
+span.rvts14
+{
+ font-size: 8pt;
+ font-family: 'segoe ui';
+ font-weight: bold;
+ color: #3d3d3d;
+}
+span.rvts15
+{
+ font-size: 13pt;
+ font-family: 'segoe ui';
+ font-weight: bold;
+ color: #3f529c;
+}
+a.rvts16, span.rvts16
+{
+ font-size: 8pt;
+ font-family: 'segoe ui';
+ color: #1364c4;
+ text-decoration: none;
+}
+a.rvts16:hover
+{
+ text-decoration: underline;
+}
+span.rvts17 /* Font Style */
 {
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-style: italic;
  color: #c0c0c0;
 }
-a.rvts12, span.rvts12 /* Font Style */
+a.rvts18, span.rvts18 /* Font Style */
 {
  font-family: 'Tahoma', 'Geneva', sans-serif;
  font-style: italic;
  color: #6666ff;
  text-decoration: underline;
 }
-span.rvts13
+span.rvts19
 {
+ font-size: 8pt;
+ font-family: 'segoe ui';
  font-weight: bold;
-}
-span.rvts14
-{
- font-style: italic;
-}
-span.rvts15
-{
- color: #7f7f7f;
-}
-span.rvts16
-{
- font-style: italic;
- color: #7f7f7f;
 }
 /* ========== Para Styles ========== */
 p,ul,ol /* Paragraph Style */
@@ -106,7 +136,47 @@ p,ul,ol /* Paragraph Style */
 {
  text-align: center;
 }
-.rvps4 /* Paragraph Style */
+.rvps4
+{
+ margin: 0px 15px 0px 20px;
+}
+.rvps5
+{
+ margin: 5px 0px 5px 10px;
+}
+.rvps6
+{
+ border-color: #e5e5e5;
+ border-style: solid;
+ border-width: 2px;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+ padding: 0px 0px 10px 10px;
+ margin: 10px 0px 0px 0px;
+}
+.rvps7
+{
+ border-color: #e5e5e5;
+ border-style: solid;
+ border-width: 1px;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+ margin: 18px 25px 20px 0px;
+}
+.rvps8
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 10px 0px 19px 10px;
+}
+.rvps9
+{
+ margin: 10px 0px 10px 0px;
+}
+.rvps10 /* Paragraph Style */
 {
  text-align: center;
  border-color: #c0c0c0;
@@ -117,14 +187,3 @@ p,ul,ol /* Paragraph Style */
  padding: 2px 0px 2px 0px;
  margin: 7px 0px 7px 0px;
 }
-.rvps5
-{
- margin: 0px 0px 0px 24px;
-}
-/* ========== Lists ========== */
-.list0 {text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;}
-.list1 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside;}
-.list2 {text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;}
-.list3 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: circle;}
-.list4 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: square;}
-.list5 {text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: disc;}
